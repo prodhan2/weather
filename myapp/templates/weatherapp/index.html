@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আবহাওয়া সফটওয়্যার</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            max-width: 300px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .description {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .temperature {
+            font-size: 2em;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .date {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .city {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>আবহাওয়া সফটওয়্যার</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" placeholder="আপনার শহরের নাম লিখুন" name="city">
+            <button type="submit">Enter</button>
+        </form>
+        <div class="city"> আপনার কাঙ্খিত শহর    : {{ city }}</div> 
+        <div class="description">সেখানকার আকাশের অবস্থা :   {{ description }}</div> 
+        <div class="temperature"> সেখানকার আজকের তাপমাত্রা  :{{ temp }}°C </div> 
+        আবহাওয়ার গতি {{wind_speed}}
+        <div class="date">{{ day }}</div>
+        
+    </div>
+</body>
+</html>
